@@ -1,0 +1,21 @@
+
+.search-results {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+    padding: 8px;
+  }
+  
+  .search-result {
+    padding: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .search-result:hover {
+    background-color: #f0f0f0;
+  }
