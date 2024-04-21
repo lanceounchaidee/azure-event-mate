@@ -60,7 +60,7 @@ const ResetPassword = () => {
                 setTimeout(() => {
                     window.location.href = "/login";
                 }, 1000);
-          } else if(response.statusText == "Unauthorized"){
+          } else if(response.statusText === "Unauthorized"){
             alert("Session Timeout. Please login again!");
             handleSignout();
           }else {

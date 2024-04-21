@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import logo from "../assets/logo.png"
 import { Button } from "./Button";
-import NavBar from "./navBar";
 import { useNavigate } from "react-router-dom";
 import withAuth from './withAuth';
 
@@ -23,9 +22,7 @@ const Paymethod = () => {
 
         setInfo(values => ({...values, [name]: value}))
     }
-    var finishPayment=()=>{
-        alert("payment successful");
-    }
+
     const handleSubmit = async(e) =>{
         e.preventDefault();
         try{

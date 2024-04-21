@@ -6,7 +6,7 @@ import './navBar.css';
 
 function NavBar() {
     const [loggedIn, setLoggedIn] = useState(false);
-    const [username, setUsername] = useState('');
+    // const [username, setUsername] = useState(''); // Commented out unused state variable
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -14,10 +14,10 @@ function NavBar() {
         // Check if user is logged in using local storage
         const storedUsername = window.localStorage.getItem('username');
         if (storedUsername) {
-            setUsername(storedUsername);
+            // setUsername(storedUsername); // Commented out unused state variable
             setLoggedIn(true);
         } else {
-            setUsername('');
+            // setUsername(''); // Commented out unused state variable
             setLoggedIn(false);
         }
     }, []);
@@ -28,7 +28,7 @@ function NavBar() {
         const searchParams = new URLSearchParams(location.search);
         const usernameParam = searchParams.get('username');
         if (usernameParam) {
-            setUsername(usernameParam);
+            // setUsername(usernameParam); // Commented out unused state variable
             setLoggedIn(true); // Update loggedIn state when username is present in URL
         }
     }, [location]);
@@ -37,7 +37,7 @@ function NavBar() {
         // Clear local storage
         window.localStorage.removeItem('username');
         // Update state
-        setUsername('');
+        // setUsername(''); // Commented out unused state variable
         setLoggedIn(false);
         // Redirect to login page
         navigate("/login");
