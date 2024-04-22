@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import img from "../assets/HomeImage.jpg";
-import bgimg from "../assets/backgroundImage.jpg";
+import bgimg from "../assets/pic1.jpg";
 import { Button } from "./Button";
 import axios from 'axios';
 import ReservationsCard from "./ReservationsCard";
+import "./homeBody.css";
+
 
 const HomeBody = () => {
     const [reservations, setReservations] = useState([]);
@@ -24,21 +25,21 @@ const HomeBody = () => {
 
         fetchReservations();
     }, [API_URL, userId]); 
-    
 
     return (
         <div className="homeContainer">
-            <img className="bgImage" src={bgimg} alt="Background" />
-            <img className="homeImg" src={img} alt="Home" style={{ maxWidth: "50em" }} />
+            <div className="bgImage" style={{ backgroundImage: `url(${bgimg})`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: '100%', position: 'absolute', zIndex: '-1' }} />
             <div className="theHome">
-                <div className="homeBodyButtons">
+                <div className="homeText">
+                    <h2>Book with EventMate</h2>
+                    <p>EventMate is the perfect tool to help you plan your sporting events</p>
                     <Link to="/venues">
                         <Button className='buttons' buttonStyle="buttonOutline" buttonSize="buttonLarge">
                             RESERVE NOW
                         </Button>
                     </Link>
                 </div>
-
+                
                 {userId && (
                     <div className="ChildLeft">
                         <h3>Reservations:</h3>

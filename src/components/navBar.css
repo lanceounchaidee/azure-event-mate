@@ -1,6 +1,6 @@
 
 .navBar {
-    background-image: url("../assets/backgroundImage.jpg");
+    background-color: #242424;
     background-size: cover;
     height: 80px;
     display: flex;
@@ -47,7 +47,7 @@
   }
   
   .navLinks {
-    color: black;
+    color: rgb(255, 255, 255);
     display: flex;
     align-items: center;
     text-decoration: none;
