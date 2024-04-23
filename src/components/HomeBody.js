@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import bgimg from "../assets/pic5.jpg";
 import { Button } from "./Button";
-import './homeBody.css';
-import ReservationsCard from "./ReservationsCard";
 import axios from 'axios';
-// eslint-disable-next-line
+import './homeBody.css';
+// import ReservationsCard from "./ReservationsCard"; // Comment out the import statement
 import UserCard from "./UserCard";
 
 const HomeBody = () => {
-    const [reservations, setReservations] = useState([]);
+    // const [reservations, setReservations] = useState([]); // Comment out the state variable declaration
     const userId = window.localStorage.getItem("userId");
     const API_URL = process.env.REACT_APP_API_URL;
 
@@ -18,7 +17,7 @@ const HomeBody = () => {
             try {
                 const response = await axios.post(`${API_URL}/user-reservation-details`, { userId: window.localStorage.getItem('userId') });
                 console.log(response.data);
-                setReservations(response.data);
+                // setReservations(response.data);
             } catch (error) {
                 console.error('Error fetching reservations:', error.message);
             }
@@ -42,9 +41,21 @@ const HomeBody = () => {
                     </Link>
                 </div>
 
-                {userId != null &&<div className="profileContainer">
+                {userId != null && <div className="profileContainer">
                   <UserCard/>
                 </div>}
+
+                {/* Render ReservationsCard components */}
+                {/* {reservations.map((reservation) => (
+                    <ReservationsCard
+                        key={reservation._id}
+                        id={reservation._id}
+                        vname={reservation.v_name}
+                        start_datetime={(reservation.date && reservation.startTime) ? `${reservation.date.split("T")[0]} ${reservation.startTime}` : ''}
+                        end_datetime={(reservation.date && reservation.endTime) ? `${reservation.date.split("T")[0]} ${reservation.endTime}` : ''}
+                        value_paid={'Paid'}
+                    />
+                ))} */}
             </div>
         </div>
     )
