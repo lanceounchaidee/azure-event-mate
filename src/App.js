@@ -19,7 +19,7 @@ import VenuesTable from "./components/ViewPage.js";
 import ReviewBooking from "./components/reviewBooking.js";
 import Paymethod from "./components/Payment.js";
 import FriendInfo from "./components/friend_info.js";
-import UserPage from "./components/userPage.js";
+//import UserPage from "./components/userPage.js";
 import EditProfileDetails from "./components/editProfileDetails.js";
 import OwnerView from "./components/OwnerView.js";
 import AddVenueForm from "./components/AddVenueForm.js";

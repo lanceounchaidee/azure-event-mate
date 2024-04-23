@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from "react";
 import { Button } from "./Button";
-import {useNavigate} from 'react-router-dom';
-import axios from 'axios';
+//import {useNavigate} from 'react-router-dom';
+//import axios from 'axios';
 
 const ForgotPassword = () => {
 
     const [info, setInfo] = useState({});
     const [successMessage, setSuccessMessage] = useState("");
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
     const API_URL = process.env.REACT_APP_API_URL;
 
 

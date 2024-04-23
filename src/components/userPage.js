@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "./Button";
-import {Link, useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import UserCard from "./UserCard";
 import withAuth from './withAuth';
 
-const UserPage =()=>{
+const UserPage = () => {
     const navigate = useNavigate();
 
     const handleSignout = () => {
@@ -12,24 +12,26 @@ const UserPage =()=>{
         navigate("/");
         window.location.reload();
     };
+
     const handleInviteFriend = () => {
         navigate("/invite-friend");
     };
 
-    return(
-    <div className="accountBody">
+    return (
+        <div className="accountBody">
             <div className="accountContainer">
                 <div>
-                    <UserCard/>
+                    <UserCard />
                 </div>
-                <Button className="inviteFriendBtn" buttonStyle='button' onClick={handleInviteFriend} >
+                <Button className="inviteFriendBtn" buttonStyle='button' onClick={handleInviteFriend}>
                     INVITE FRIEND
                 </Button>
                 <Button className="signoutBtn" buttonStyle='button' onClick={handleSignout}>
-                    SIGN OUT 
+                    SIGN OUT
                 </Button>
             </div>
-    </div>
-    )
+        </div>
+    );
 };
+
 export default withAuth(UserPage);

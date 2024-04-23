@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
-import  axios from "axios";
+import React, { useState } from "react";
 
 const FriendInfo = () => {
     const [friendEmail, setFriendEmail] = useState("");

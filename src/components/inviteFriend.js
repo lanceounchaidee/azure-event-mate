@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "./Button";
-// import API_BASE_URL from '../apiConfig';
-import {Link, useNavigate} from 'react-router-dom';
 import withAuth from './withAuth';
+import { useNavigate } from 'react-router-dom';
 
 const InviteFriend = () => {
     const [info, setInfo] = useState({});
@@ -45,10 +44,10 @@ const InviteFriend = () => {
                 setTimeout(() => {
                     window.location.href = "/";
                 }, 1000);
-            } else if(response.statusText == "Unauthorized"){
+            } else if (response.statusText === "Unauthorized") {
                 alert("Session Timeout. Please login again!");
                 handleSignout();
-            }else{
+            } else {
                 const errorData = await response.json();
                 console.error("Invite sent failed:", errorData.msg);
             }
@@ -63,7 +62,7 @@ const InviteFriend = () => {
             setTimeout(() => {
                 setSuccessMessage("");
                 setShowSuccessMessage(false);
-            }, 10000); // 3000 milliseconds (3 seconds)
+            }, 10000); // 10000 milliseconds (10 seconds)
         }
     }, [showSuccessMessage]);
 

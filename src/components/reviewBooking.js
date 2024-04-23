@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate, Link, Form } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "./Button";
 import withAuth from './withAuth';
 
@@ -19,30 +19,29 @@ function ReviewBooking(){
     const [venueName, setVenueName] = useState("");
     const [venueCost, setVenueCost] = useState("");
 
-    const fetchData = async () => {
-        try {
-          const response = await axios.post(`${API_URL}/venue-details`, { venueId: id });
-          setVenueData(response.data);
-        } catch (error) {
-          console.error('Error fetching venue details:', error.message);
-        }
-      };
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.post(`${API_URL}/venue-details`, { venueId: id });
+                setVenueData(response.data);
+            } catch (error) {
+                console.error('Error fetching venue details:', error.message);
+            }
+        };
 
-      useEffect(() => {
         fetchData();
-      }, [id]);
+    }, [API_URL, id]);
 
-      useEffect(() => {
+    useEffect(() => {
         if (venueData) {
-          setVenueName(venueData.v_name);
-          setVenueCost(venueData.total_cost);
+            setVenueName(venueData.v_name);
+            setVenueCost(venueData.total_cost);
         }
-      }, [venueData]);
+    }, [venueData]);
 
     const finishReview = () =>{
-        navigate(`/payment?venueid=${id}&startTime=${startTime}&endTime=${endTime}&date=${date}`)
-        //alert("Venue booked!");
-    }
+        navigate(`/payment?venueid=${id}&startTime=${startTime}&endTime=${endTime}&date=${date}`);
+    };
 
     return(
         <div className="reviewBookingBody">
