@@ -74,11 +74,11 @@ function PlayersPage() {
               <PlayerCard
                 key={player.player_id}
                 id={player.player_id}
-                player_name={player.player_name}
-                sport_activity_name={player.sport_activity_name}
+                player_name={player.username}
+                sport_activity_name={player.sport}
                 gender={player.gender}
                 age={player.age}
-                skill_level={player.skill_level}
+                skill_level={player.level}
                 available={player.available}
               />
             ))}
