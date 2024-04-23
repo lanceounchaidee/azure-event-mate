@@ -9,30 +9,29 @@ function UserCard() {
     const [userInfo, setUserInfo] = useState(null);
 
     useEffect(() => {
+        const fetchUserProfile = async () => {
+            const email = localStorage.getItem("email");
+            try {
+                const response = await fetch(`${API_URL}/profile?email=${email}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+
+                if (response.status === 200) {
+                    const userData = await response.json();
+                    setUserInfo(userData);
+                } else {
+                    console.error("Failed to fetch user profile");
+                }
+            } catch (error) {
+                console.error("Error fetching user profile:", error);
+            }
+        };
+
         fetchUserProfile();
     }, []);
-
-    const email = localStorage.getItem("email");
-
-    const fetchUserProfile = async () => {
-        try {
-            const response = await fetch(`${API_URL}/profile?email=${email}`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-
-            if (response.status === 200) {
-                const userData = await response.json();
-                setUserInfo(userData);
-            } else {
-                console.error("Failed to fetch user profile");
-            }
-        } catch (error) {
-            console.error("Error fetching user profile:", error);
-        }
-    };
 
     const handleEditProfileDetails = () => {
         navigate("/edit-profile-details");

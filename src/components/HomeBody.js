@@ -5,6 +5,8 @@ import { Button } from "./Button";
 import './homeBody.css';
 import ReservationsCard from "./ReservationsCard";
 import axios from 'axios';
+// eslint-disable-next-line
+import UserCard from "./UserCard";
 
 const HomeBody = () => {
     const [reservations, setReservations] = useState([]);
@@ -39,6 +41,10 @@ const HomeBody = () => {
                         </Button>
                     </Link>
                 </div>
+
+                {userId != null &&<div className="profileContainer">
+                  <UserCard/>
+                </div>}
                 
                 {userId && (
                     <div className="ChildLeft">

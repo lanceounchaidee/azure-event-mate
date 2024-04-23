@@ -34,8 +34,11 @@ const VenueDetails = () => {
   const [venueAddress, setVenueAddress] = useState("");
   const [venueSport, setVenueSport] = useState("");
   const [reservations, setReservations] = useState([]);
-  const [closed, setClosed] = useState(false);
-  // const [search, setSearch] = useState('');
+  const [closed, setClosed] = useState("");
+  // eslint-disable-next-line
+  const [search, setSearch] = useState(""); // Define search state
+  // eslint-disable-next-line
+  const [disabled, setDisabled] = useState(false); // Define disabled state
   const API_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
@@ -115,16 +118,22 @@ const VenueDetails = () => {
     }
   };
 
+  // Define handleReservationButtonClick function
+  const handleReservationButtonClick = (reservation) => {
+    setSelectedReservation(reservation);
+  };
+
   return (
     <div className='venueDetailsBody'>
-      <SplitLayout>
-        <div className='venueDetailsImage' id='theImage'>
-        </div>
+    <SplitLayout>
+      <div className='venueDetailsImage' id='theImage'>
+      </div>
         <div className='venueDetails'>
           <div className='imageURL'>
             <div className="bookmark">
               <Button onClick={handleBookmarkButtonClick}> Bookmark </Button>
             </div>
+            
             <h2 className='venueDetailsTitle'>{venueName}</h2>
           </div>
           <div className="openCloseDetail">
@@ -136,37 +145,53 @@ const VenueDetails = () => {
             }
           </div>
           <div className='small-details'>
+            
             <div className='detail'>Sport: {venueSport}</div>
             <div className='detail'>Address: {venueAddress}</div>
           </div>
+          
           <div className='timeslots'>
             <h4>Time Slots</h4>
-            {/* Remove the map function since venueReservationTimes is not defined */}
+            { !closed && 
+            <div>
+              {venueReservationTimes.map((reservation) => (
+                <Button
+                  key={reservation.startTime}
+                  buttonStyle={selectedReservation === reservation ? 'buttonPrimary' : 'buttonOutline'}
+                  onClick={() => handleReservationButtonClick(reservation)}
+                  disabled={disabled} // Assuming disabled is defined elsewhere
+                >
+                  {reservation.startTime} - {reservation.endTime} {(reservation.date)}
+                </Button>
+              ))}
+            </div>
+            }
           </div>
-          {!closed &&
-            <div className='detail'>
+          {!closed && 
+          <div className='detail'>
               <Button onClick={handleBookButtonClick}> Book It! </Button>
-            </div>}
+          </div>}
         </div>
         <div className="ChildLeft">
           <h3>Reservations:</h3>
           <div className='ReservationSearch'>
-            <input className="searchInput" placeholder="Search Reservations" />
+            <input className="searchInput" placeholder="Search Reservations" onChange={(e) => setSearch(e.target.value)}/>
           </div>
           {reservations.map((reservation) => (
-            <ReservationsCard
-              key={reservation._id}
-              id={reservation._id}
-              vname={venueName}
-              start_datetime={(reservation.date.split("T")[0] + " " + reservation.startTime)}
-              end_datetime={reservation.endTime}
-              value_paid={'Paid'}
-            />
+              <ReservationsCard
+                key={reservation._id}
+                id={reservation._id}
+                vname={venueName}
+                start_datetime={(reservation.date.split("T")[0] + " " + reservation.startTime)}
+                end_datetime={reservation.endTime}
+                value_paid={'Paid'}
+              />
           ))}
         </div>
-      </SplitLayout>
-    </div>
+      
+    </SplitLayout>
+  </div>
   );
 };
-
+  
 export default VenueDetails;
