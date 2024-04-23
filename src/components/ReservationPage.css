@@ -1,0 +1,12 @@
+
+.ReservationsGrid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%; /* Ensure the grid takes up the entire width of the container */
+    justify-content: space-between; /* Distribute items evenly along the main axis */
+}
+
+.ReservationsCard {
+    flex: 0 0 calc(48% - 10px); /* Adjust the width as needed */
+    margin-bottom: 20px; /* Add some bottom margin for spacing */
+}

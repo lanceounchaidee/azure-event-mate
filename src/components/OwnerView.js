@@ -4,6 +4,8 @@ import withAuth from './withAuth';
 import bgimg from "../assets/backgroundImage.jpg";
 import OwnerCard from './Ownercard';
 import { useNavigate } from 'react-router-dom';
+import './OwnerView.css';
+
 
 const OwnerView = () => {
   const [venues, setVenues] = useState([]);
@@ -48,32 +50,31 @@ const OwnerView = () => {
         <h1>Venue Owner View</h1>
       </div>
       <div className='ChildContainer'>
-        <div className="ChildLeft">
-          <h3>Venues:</h3>
-          {venues.filter((item) => {
-            return search.toLowerCase() === '' ? item 
-              : 
-              (item.v_name.toLowerCase().includes(search)
-              ||
-              item.sport.toLowerCase().includes(search)
-              ||
-              item.address.toLowerCase().includes(search));
-          })
-          .map((venue) => (
-            <OwnerCard
-              key={venue._id}
-              id={venue._id}
-              vname={venue.v_name}
-              address={venue.address}
-              sport={venue.sport}
-              status={venue.closed}
-              onClick={() => handleCardClick(venue._id)}
-              bookings={venue.bookings} // Pass the bookings directly from the venue object
-            />
-          ))}
+          <div className="venueGrid">
+            {venues.filter((item) => {
+              return search.toLowerCase() === '' ? item 
+                : 
+                (item.v_name.toLowerCase().includes(search)
+                ||
+                item.sport.toLowerCase().includes(search)
+                ||
+                item.address.toLowerCase().includes(search));
+            })
+            .map((venue) => (
+              <OwnerCard
+                key={venue._id}
+                id={venue._id}
+                vname={venue.v_name}
+                address={venue.address}
+                sport={venue.sport}
+                status={venue.closed}
+                onClick={() => handleCardClick(venue._id)}
+                bookings={venue.bookings} // Pass the bookings directly from the venue object
+              />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
   );
 };
 

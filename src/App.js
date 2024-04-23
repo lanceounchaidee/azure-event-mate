@@ -6,7 +6,7 @@ import Login from "./components/Login.js";
 import Register from "./components/Register.js";
 import HomeBody from "./components/HomeBody.js";
 import InviteFriend from "./components/inviteFriend.js";
-
+import Reservations from "./components/ReservationPage.js";
 //import "./index.css";
 import NavBar from "./components/navBar";
 import Home from './components/Home.js'
@@ -23,6 +23,7 @@ import FriendInfo from "./components/friend_info.js";
 import EditProfileDetails from "./components/editProfileDetails.js";
 import OwnerView from "./components/OwnerView.js";
 import AddVenueForm from "./components/AddVenueForm.js";
+
 
 
 
@@ -51,6 +52,7 @@ function App() {
           <Route path='/friend_info' element={<FriendInfo/>} />
           <Route path='/OwnerView' element={<OwnerView/>} />
           <Route path='/AddVenueForm' element={<AddVenueForm/>}/>
+          <Route path='/reservations' element={<Reservations />} />
       </Routes>
     </BrowserRouter>
 

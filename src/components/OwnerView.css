@@ -1,0 +1,12 @@
+
+.venueGrid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .OwnerCard {
+    flex: 0 0 calc(48% - 10px); 
+    margin-bottom: 20px;
+  }

@@ -21,7 +21,6 @@ function NavBar() {
             setLoggedIn(false);
         }
     }, []);
-    
 
     useEffect(() => {
         // Extract username from query parameter
@@ -43,9 +42,9 @@ function NavBar() {
         // Redirect to login page
         navigate("/login");
     };
-    
-    const move =()=>{
-        navigate("/ownerview")
+
+    const move = () => {
+        navigate("/ownerview");
     }
 
     return (
@@ -70,34 +69,35 @@ function NavBar() {
                             Players
                         </Link>
                     </li>
-
+                    {loggedIn && (
+                        <li className="navItem">
+                            <Link to="/reservations" className="navLinks">
+                                Reservations
+                            </Link>
+                        </li>
+                    )}
                     <li className="navItem">
-                       {/* { console.log(localStorage.getItem("role"))} */}
-                    {window.localStorage.getItem("role") === "Organizer" || window.localStorage.getItem("role") === "Admin" ? 
-                        <Link to="/OwnerView" className="navLinks" onClick={move}>
-                            Owner
-                        </Link>
-                        : <div></div>
-                    }
-
+                        {window.localStorage.getItem("role") === "Organizer" || window.localStorage.getItem("role") === "Admin" ? 
+                            <Link to="/OwnerView" className="navLinks" onClick={move}>
+                                Owner
+                            </Link>
+                            : <div></div>
+                        }
                     </li>
                 </ul>
-
-        
                 <ul className="userPage">
-                {loggedIn ? (
-    <li>
-        <span>Welcome, {username}</span>
-        <Button buttonStyle='button' onClick={handleLogout}>Logout</Button>
-    </li>
-) : (
-    <li>
-        <Link to="/login">
-            <Button buttonStyle='button'>Login</Button>
-        </Link>
-    </li>
-)}
-
+                    {loggedIn ? (
+                        <li>
+                            <span>Welcome, {username}</span>
+                            <Button buttonStyle='button' onClick={handleLogout}>Logout</Button>
+                        </li>
+                    ) : (
+                        <li>
+                            <Link to="/login">
+                                <Button buttonStyle='button'>Login</Button>
+                            </Link>
+                        </li>
+                    )}
                 </ul>
             </div>
         </nav>

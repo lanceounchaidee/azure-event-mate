@@ -45,27 +45,6 @@ const HomeBody = () => {
                 {userId != null &&<div className="profileContainer">
                   <UserCard/>
                 </div>}
-                
-                {userId && (
-                    <div className="ChildLeft">
-                        <h3>Reservations:</h3>
-                        {reservations.length > 0 && (
-                            <div className='ReservationSearch'>
-                                <input className="searchInput" placeholder="Search Reservations" />
-                            </div>
-                        )}
-                        {reservations.map((reservation) => (
-                            <ReservationsCard
-                                key={reservation._id}
-                                id={reservation._id}
-                                vname={reservation.v_name}
-                                start_datetime={(reservation.date && reservation.startTime) ? `${reservation.date.split("T")[0]} ${reservation.startTime}` : ''}
-                                end_datetime={(reservation.date && reservation.endTime) ? `${reservation.date.split("T")[0]} ${reservation.endTime}` : ''}
-                                value_paid={'Paid'}
-                            />
-                        ))}
-                    </div>
-                )}
             </div>
         </div>
     )
