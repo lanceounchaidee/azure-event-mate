@@ -10,6 +10,24 @@ const VenueDetails = () => {
   const id = venueParams.get('venueid');
   const navigate = useNavigate();
   // eslint-disable-next-line
+  const [venueReservationTimes, setVenueReservationTimes] = useState([{
+    startTime: "1:00 PM",
+    endTime: "3:00 PM",
+    date: "04-23-2024"
+  },{
+    startTime: "11:00 AM",
+    endTime: "12:30 PM",
+    date: "04-22-2024"
+  },{
+    startTime: "9:00 AM",
+    endTime: "10:30 AM",
+    date: "04-21-2024"
+  },{
+    startTime: "1:00 PM",
+    endTime: "3:00 PM",
+    date: "04-24-2024"
+  },]);
+  // eslint-disable-next-line
   const [selectedReservation, setSelectedReservation] = useState(null);
   const [venueData, setVenueData] = useState({});
   const [venueName, setVenueName] = useState("");
