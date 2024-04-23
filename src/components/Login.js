@@ -28,16 +28,25 @@ const Login = () => {
                 },
                 body: JSON.stringify(info),
             });
+
+             window.localStorage.setItem('username', info.email);
+            
             if (response.status === 200) {
                 const data = await response.json();
                 console.log("Login successful:", data);
             
                 if (data.status === "pending") {
                     console.log(info)
+
+                    
+                    // window.localStorage.setItem("user_ID", data.data.userId);
+                    window.localStorage.setItem('email', data.data.email);
+                    // window.localStorage.setItem(
                     window.localStorage.setItem('username', info.email);
                     window.localStorage.setItem('userId', data.data.userId);
                     
                     setInfo({...info, userId: data.data.userId});
+                    console.log("userId")
                     setLoginInfo(true); // Show OTP input  
                 }
             } else {
@@ -69,7 +78,7 @@ const Login = () => {
                 console.log("2fa verify successful:", data);
                 window.localStorage.setItem('token', data.token);
                 navigate("/");
-                window.location.reload();
+                // window.location.reload();
             } else {
                 const errorData = await response.json();
                 console.error("2fa verify failed:", errorData);

@@ -1,6 +1,6 @@
 
 .navBar {
-    background-color: #242424;
+    background-color: black;
     background-size: cover;
     height: 80px;
     display: flex;
@@ -47,7 +47,7 @@
   }
   
   .navLinks {
-    color: rgb(255, 255, 255);
+    color: white;
     display: flex;
     align-items: center;
     text-decoration: none;

@@ -39,7 +39,7 @@ const Register = () => {
             });
     
             if (response.ok) {
-              //  const data = await response.json();
+                // const data = await response.json();
                 console.log("Registration successful:");
                 setSuccessMessage("Registration successful. Redirecting to the Login page...");
                 setShowSuccessMessage(true);
@@ -47,6 +47,11 @@ const Register = () => {
                 setTimeout(() => {
                     window.location.href = "/login";
                 }, 3000);
+
+                window.localStorage.setItem("userId", info.username);
+                window.localStorage.setItem("role", info.role);
+                window.localStorage.setItem("userEmail", info.email);
+                window.localStorage.setItem("username", info.username);
             } else {
                 const errorData = await response.text(); // Parse the response as text
                 console.error("Registration failed:", errorData);
@@ -64,6 +69,7 @@ const Register = () => {
     
 
     const gotoLoginPage = () => navigate("/login");
+    const gotoFriendPage = () => navigate("/friend_info");
 
     useEffect(() => {
         if (showSuccessMessage) {
@@ -157,6 +163,13 @@ const Register = () => {
                         <p className="inviteFriendMessage">{successMessage}</p>
                     </div>
                 )}
+
+                <div className="inviteFriendMessageContainer">
+                  <p className="inviteFriendMessage"></p>
+                  <button className="inviteFriendButton" onClick={gotoFriendPage}>
+                    Invite Friend
+                  </button>
+                </div>
             </div>
         </div>
     );

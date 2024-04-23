@@ -1,30 +1,43 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import bgimg from "../assets/pic1.jpg";
+import React, { useState, useEffect  } from "react";
+import { Link,useNavigate } from "react-router-dom";
+import bgimg from "../assets/pic5.jpg";
 import { Button } from "./Button";
-import axios from 'axios';
+import './homeBody.css';
 import ReservationsCard from "./ReservationsCard";
-import "./homeBody.css";
+import axios from 'axios';
+//import UserCard from "./UserCard";
 
 
 const HomeBody = () => {
+    const navigate = useNavigate();
+    const [search, setSearch] = useState('');
     const [reservations, setReservations] = useState([]);
     const userId = window.localStorage.getItem("userId");
     const API_URL = process.env.REACT_APP_API_URL;
 
-    useEffect(() => {
-        const fetchReservations = async () => {
-            try {
-                const response = await axios.post(`${API_URL}/user-reservation-details`, { userId: window.localStorage.getItem('userId') });
-                console.log(response.data);
-                setReservations(response.data);
-            } catch (error) {
-                console.error('Error fetching reservations:', error.message);
-            }
-        };
+    const fetchReservations = async () => {
+        try {
+            const response = await axios.post(`${API_URL}/user-reservation-details`, { userId: window.localStorage.getItem('userId') });
+            console.log(response.data);
+            setReservations(response.data);
+        } catch (error) {
+            console.error('Error fetching reservations:', error.message);
+        }
+    };
 
+  // state variable to store the profile data
+    // const [profileData, setProfileData] = useState(
+    //     {
+    //       user_id: window.localStorage.getItem('userId') || "",
+    //       username: window.localStorage.getItem('username') || "",
+    //       email: window.localStorage.getItem('email') || "",
+    //       role: window.localStorage.getItem('role') || ""
+    //     }
+    //   );
+
+    useEffect(() => {
         fetchReservations();
-    }, [API_URL, userId]); 
+    }, []);
 
     return (
         <div className="homeContainer">
@@ -64,5 +77,6 @@ const HomeBody = () => {
         </div>
     )
 }
+
 
 export default HomeBody;

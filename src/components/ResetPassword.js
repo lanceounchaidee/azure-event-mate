@@ -1,14 +1,17 @@
 import React, {useState, useEffect} from "react";
 import { Button } from "./Button";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 
+//var checkPassword = false;
 
 const ResetPassword = () => {
 
     const [info, setInfo] = useState({});
     const [successMessage, setSuccessMessage] = useState("");
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-    const navigate = useNavigate();
+    const navigate = useNavigate();     
+    const API_URL = process.env.REACT_APP_API_URL;
+
 
     const handleChange = (event) => {
         console.log("handleChange called");
@@ -36,14 +39,14 @@ const ResetPassword = () => {
             return;
           }
     
-          const token = new URLSearchParams(window.location.search).get("token");
+          const token = new URLSearchParams(window.localStorage.getItem('token'));
     
           if (!token) {
             console.error("Token is missing in query parameters");
             return;
           }
     
-          const response = await fetch(`/api/reset-password?token=${token}`, {
+          const response = await fetch(`${API_URL}/auth/reset-password?token=${token}`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

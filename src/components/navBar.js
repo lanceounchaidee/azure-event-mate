@@ -6,7 +6,7 @@ import './navBar.css';
 
 function NavBar() {
     const [loggedIn, setLoggedIn] = useState(false);
-    // const [username, setUsername] = useState(''); // Commented out unused state variable
+    const [username, setUsername] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -14,10 +14,10 @@ function NavBar() {
         // Check if user is logged in using local storage
         const storedUsername = window.localStorage.getItem('username');
         if (storedUsername) {
-            // setUsername(storedUsername); // Commented out unused state variable
+            setUsername(storedUsername);
             setLoggedIn(true);
         } else {
-            // setUsername(''); // Commented out unused state variable
+            setUsername('');
             setLoggedIn(false);
         }
     }, []);
@@ -28,7 +28,7 @@ function NavBar() {
         const searchParams = new URLSearchParams(location.search);
         const usernameParam = searchParams.get('username');
         if (usernameParam) {
-            // setUsername(usernameParam); // Commented out unused state variable
+            setUsername(usernameParam);
             setLoggedIn(true); // Update loggedIn state when username is present in URL
         }
     }, [location]);
@@ -36,14 +36,19 @@ function NavBar() {
     const handleLogout = () => {
         // Clear local storage
         window.localStorage.removeItem('username');
+
+        
         // Update state
-        // setUsername(''); // Commented out unused state variable
+        setUsername('');
         setLoggedIn(false);
         // Redirect to login page
         navigate("/login");
     };
     
-
+    const move =()=>{
+        navigate("/ownerview")
+    }
+    console.log(window.localStorage.getItem("role"))
     return (
         <nav className="navBar">
             <div className="navBarContainer">
@@ -66,7 +71,20 @@ function NavBar() {
                             Players
                         </Link>
                     </li>
+
+                    <li className="navItem">
+                       {/* { console.log(localStorage.getItem("role"))} */}
+                    {window.localStorage.getItem("role") === "Organizer" || window.localStorage.getItem("role") === "Admin" ? 
+                        <Link to="/OwnerView" className="navLinks" onClick={move}>
+                            Owner
+                        </Link>
+                        : <div></div>
+                    }
+
+                    </li>
                 </ul>
+
+        
                 <ul className="userPage">
                 {loggedIn ? (
     <li>

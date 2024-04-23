@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate /*, Link, Form */ } from "react-router-dom"; // Commented out unused imports
+import { useNavigate, Link, Form } from "react-router-dom";
 import { Button } from "./Button";
 import withAuth from './withAuth';
 
@@ -19,32 +19,32 @@ function ReviewBooking(){
     const [venueName, setVenueName] = useState("");
     const [venueCost, setVenueCost] = useState("");
 
-    const fetchData = useCallback(async () => {
+    const fetchData = async () => {
         try {
-            const response = await axios.post(`${API_URL}/venue-details`, { venueId: id });
-            setVenueData(response.data);
+          const response = await axios.post(`${API_URL}/venue-details`, { venueId: id });
+          setVenueData(response.data);
         } catch (error) {
-            console.error('Error fetching venue details:', error.message);
+          console.error('Error fetching venue details:', error.message);
         }
-    }, [API_URL, id]);
+      };
 
-    useEffect(() => {
+      useEffect(() => {
         fetchData();
-    }, [fetchData]);
+      }, [id]);
 
-    useEffect(() => {
+      useEffect(() => {
         if (venueData) {
-            setVenueName(venueData.v_name);
-            setVenueCost(venueData.total_cost);
+          setVenueName(venueData.v_name);
+          setVenueCost(venueData.total_cost);
         }
-    }, [venueData]);
+      }, [venueData]);
 
-    const finishReview = () => {
-        navigate(`/payment?venueid=${id}&startTime=${startTime}&endTime=${endTime}&date=${date}`);
+    const finishReview = () =>{
+        navigate(`/payment?venueid=${id}&startTime=${startTime}&endTime=${endTime}&date=${date}`)
         //alert("Venue booked!");
-    };
+    }
 
-    return (
+    return(
         <div className="reviewBookingBody">
             <div className="reviewBookingContainer">
                 <h2>Review Booking</h2>
@@ -63,7 +63,7 @@ function ReviewBooking(){
                 </form>
             </div>
         </div>
-    );
-}
+    ) 
+};
 
 export default withAuth(ReviewBooking);

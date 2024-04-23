@@ -29,15 +29,19 @@
     position: relative;
     background: transparent;
     backdrop-filter: blur(20px);
-    outline: 3px;
+    outline: 3px solid rgb(109, 109, 109);
     outline-style: solid;
     outline-color: rgb(109, 109, 109);
     margin: 1rem;
     flex: 1 0 25rem;
-    max-width: 30rem;
-    max-height: 50rem;
-    transition: 0.2s;
-    border-radius: 10px;
+    /* max-width: 30rem; */ 
+    max-width: 300px;
+    /* max-height: 50rem; */
+    padding:20px;
+    /* transition: 0.2s; */
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 20px;
 }
 
 .PlayerCard {
@@ -79,8 +83,41 @@
   }
   
 .VenueCard:hover{
-    transform: translateY(-0.5rem);
+    /* transform: translateY(-0.5rem); */
+    transform: translateY(-5px);
     box-shadow: 0.5rem 0.75rem 1.5rem #8C1C13;
+}
+
+.VenueName {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  margin-right: 20px;
+}
+
+
+
+
+.VenueAddress,
+.VenueSport {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.ReservationList {
+  margin-top: 20px;
+}
+
+.ReservationList h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.ReservationList ul {
+  padding-left: 20px;
+}
+
+.ReservationList li {
+  margin-bottom: 5px;
 }
 
 .displayStack__1{
@@ -127,4 +164,3 @@
     display: flex;
     justify-content: center;
 }
-

@@ -77,7 +77,8 @@ input {
 
 .searchForm {
   align-items: center;
-  background-color: rgba(231, 215, 193,0.5);
+  color: white;
+  background-color: rgba(0, 0, 0, 0.75);
   display: flex;
   justify-content: center;
   padding-left: 5rem;
