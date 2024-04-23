@@ -39,34 +39,30 @@ const Register = () => {
             });
     
             if (response.ok) {
-                // const data = await response.json();
                 console.log("Registration successful:");
                 setSuccessMessage("Registration successful. Redirecting to the Login page...");
                 setShowSuccessMessage(true);
     
                 setTimeout(() => {
-                    window.location.href = "/login";
+                    navigate("/login"); // Call navigate directly to redirect
                 }, 3000);
-
+    
                 window.localStorage.setItem("userId", info.username);
                 window.localStorage.setItem("role", info.role);
                 window.localStorage.setItem("userEmail", info.email);
                 window.localStorage.setItem("username", info.username);
             } else {
-                const errorData = await response.text(); // Parse the response as text
+                const errorData = await response.text();
                 console.error("Registration failed:", errorData);
-    
-                // Display the error message received from the backend
                 setErrorMessage(errorData);
                 setShowErrorMessage(true);
             }
         } catch (error) {
             console.error("Registration error:", error);
-            setErrorMessage("Registration failed. Please try again."); // Display a generic error message for network or other errors
+            setErrorMessage("Registration failed. Please try again.");
             setShowErrorMessage(true);
         }
     };
-    
 
     const gotoLoginPage = () => navigate("/login");
     const gotoFriendPage = () => navigate("/friend_info");
